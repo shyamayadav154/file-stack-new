@@ -42,7 +42,7 @@ export default function FileUPloader({ folderId }: { folderId: number | undefine
       <h1>File Uploader</h1>
       <form onSubmit={handleSubmit}>
         <input type="file" onChange={handleFileChange} />
-        <input type="hidden" name="folderId" value={folderId} />
+        <input type="hidden" name="folderId" value={folderId ?? ""} />
         <button type="submit">Upload</button>
       </form>
     </div>
