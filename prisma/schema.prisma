@@ -11,7 +11,7 @@ datasource db {
 
 model Folder {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @unique
   files     File[]
   createdAt DateTime @default(now())
   parent    Folder?  @relation("FolderTree", fields: [parentId], references: [id])
@@ -21,7 +21,7 @@ model Folder {
 
 model File {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @unique
   path      String
   size      Int
   type      String

@@ -2,7 +2,22 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react";
 
-export default function FileUPloader({ folderId }: { folderId: number | undefined}) {
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
+
+export default function FileUPloader({
+  folderId,
+}: {
+  folderId: string | null;
+}) {
   const [file, setFile] = useState<File | undefined>();
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,21 +45,40 @@ export default function FileUPloader({ folderId }: { folderId: number | undefine
       } else {
         alert("File upload failed");
       }
-
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred during file upload");
     }
   };
 
+  if (!folderId) {
+    return null;
+  }
+
   return (
-    <div>
-      <h1>File Uploader</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="file" onChange={handleFileChange} />
-        <input type="hidden" name="folderId" value={folderId ?? ""} />
-        <button type="submit">Upload</button>
-      </form>
-    </div>
+    <section className="flex flex-col items-center justify-center">
+      <div className=" min-w-[500px] max-w-sm">
+        <Card>
+          <CardHeader>
+            <CardTitle>Upload a file</CardTitle>
+            <CardDescription>
+              Drag and drop a file or click to select one.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+                <Input type="file" name="file" onChange={handleFileChange} />
+                <input type="hidden" name="folderId" value={folderId} />
+                <Button type="submit">Upload</Button>
+              </form>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+      {/* <input type="file" onChange={handleFileChange} /> */}
+      {/* <input type="hidden" name="folderId" value={folderId ?? ""} /> */}
+      {/* <button type="submit">Upload</button> */}
+    </section>
   );
 }

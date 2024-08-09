@@ -1,23 +1,24 @@
 import { db } from "~/server/db";
 import SingleFile from "./single-file";
 
-async function ShowFiles({folderId}: {folderId: number | undefined}) {
-
-  if(!folderId){
+async function ShowFiles({ folderId }: { folderId: string | undefined }) {
+  if (!folderId) {
     return <div>No folder selected</div>;
   }
 
   const data = await db.file.findMany({
-    where:{
-      folderId:Number(folderId)
-    }
+    where: {
+      folderId: Number(folderId),
+    },
   });
+
+  if (!folderId) {
+    return <div>No folder selected</div>;
+  }
 
   if (!data.length) {
     return <div>No files found</div>;
   }
-
-
 
   // const firstFile = data[0];
   // const buffer = firstFile.content;
@@ -26,10 +27,10 @@ async function ShowFiles({folderId}: {folderId: number | undefined}) {
 
   return (
     <div>
-      <h1>Files</h1>
+      <h2 className="mb-4 text-lg font-medium">Documents</h2>
       <ul className="my-2">
         {data.map((file) => (
-          <li key={file.id} className="border p-2 rounded-md">
+          <li key={file.id} className="ml-5">
             <SingleFile file={file} />
           </li>
         ))}

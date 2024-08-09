@@ -13,6 +13,11 @@ async function SideBar({
       children: true,
     },
   });
+
+  if(!data.length){
+    return <div>No folders found</div>;
+  }
+
   return (
     <SidebarFolders files={data}>
       <ShowFiles  folderId={folderId} />
