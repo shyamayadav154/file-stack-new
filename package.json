@@ -30,7 +30,9 @@
     "react": "^18.3.1",
     "react-doc-viewer": "^0.1.14",
     "react-dom": "^18.3.1",
+    "react-dropzone": "^14.2.3",
     "tailwind-merge": "^2.4.0",
+    "xlsx": "^0.18.5",
     "zod": "^3.23.3"
   },
   "devDependencies": {
