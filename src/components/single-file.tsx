@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { type File } from "@prisma/client";
+import { FileIcon } from "lucide-react";
 
 function SingleFile({ file }: { file: File }) {
   const onFileClick = async (file: File) => {
@@ -24,7 +25,15 @@ function SingleFile({ file }: { file: File }) {
     // Clean up by revoking the URL
     // URL.revokeObjectURL(url);
   };
-  return <span onClick={() => onFileClick(file)} className="truncate max-w-40">{file.name}</span>;
+  return (
+    <div
+      onClick={() => onFileClick(file)}
+      className="flex items-center gap-3 rounded-md bg-muted px-4 py-3 hover:bg-muted/50 "
+    >
+      <FileIcon className="h-5 w-5 flex-shrink-0" />
+      <p className="truncate text-wrap">{file.name}</p>
+    </div>
+  );
 }
 
 export default SingleFile;

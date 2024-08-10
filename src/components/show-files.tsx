@@ -1,7 +1,7 @@
 import { db } from "~/server/db";
 import SingleFile from "./single-file";
 
-async function ShowFiles({ folderId }: { folderId: string | undefined }) {
+async function ShowFiles({ folderId,folderName }: { folderId: string | undefined | string[],folderName: string}) {
   if (!folderId) {
     return <div>No folder selected</div>;
   }
@@ -12,10 +12,10 @@ async function ShowFiles({ folderId }: { folderId: string | undefined }) {
     },
   });
 
+
   if (!folderId) {
     return <div>No folder selected</div>;
   }
-
   if (!data.length) {
     return <div>No files found</div>;
   }
@@ -27,10 +27,12 @@ async function ShowFiles({ folderId }: { folderId: string | undefined }) {
 
   return (
     <div>
-      <h2 className="mb-4 text-lg font-medium">Documents</h2>
-      <ul className="my-2">
+      {/* <h2 className="mb-4 text-lg font-medium">{folderName}</h2> */}
+      <ul className="my-2  flex flex-col gap-2 w-full">
         {data.map((file) => (
-          <li key={file.id} className="ml-5">
+          <li key={file.id} 
+            className="pl-5 "
+          >
             <SingleFile file={file} />
           </li>
         ))}
