@@ -31,9 +31,10 @@ function SidebarFolders({
                   }}
                   // className={`border p-2 ${folderId == folder.id && "bg-green-800 text-green-200"}`}
                   className={`flex cursor-pointer items-center gap-2 rounded-md p-2 transition-colors hover:bg-muted ${folderId == folder.id && "bg-muted"}`}
-                >
+                > dddddddddddddd
                   <FolderIcon className="h-5 w-5" />
                   <span className="text-sm font-medium">{folder.name}</span>
+                  fdkfjkd
                 </div>
               );
             })}
@@ -72,4 +73,4 @@ const SingleFolder = ({
   );
 };
 
-export default SidebarFolders;
+// export default SidebarFolders;

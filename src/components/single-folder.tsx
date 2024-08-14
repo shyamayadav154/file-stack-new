@@ -11,6 +11,7 @@ import { Accordion } from "@radix-ui/react-accordion";
 import ShowFiles from "./show-files";
 import FileUPloader from "./file-uploader";
 import { Suspense } from "react";
+import DeleteFolder from "./delete-folder";
 
 export const AllFolders = ({ folders }: { folders: Folder[] }) => {
   return (
@@ -18,8 +19,11 @@ export const AllFolders = ({ folders }: { folders: Folder[] }) => {
       {folders.map((folder) => {
         return (
           <SingleFolder key={folder.id} folder={folder} isChecked={false}>
-              <ShowFiles folderId={folder.id} folderName={folder.name} />
-            <FileUPloader folderId={folder.id} />
+            <ShowFiles folderId={folder.id} folderName={folder.name} />
+            <div className="flex items-center gap-3 mt-5">
+              <DeleteFolder folderId={folder.id} />
+              <FileUPloader folderId={folder.id} />
+            </div>
           </SingleFolder>
         );
       })}
@@ -29,7 +33,6 @@ export const AllFolders = ({ folders }: { folders: Folder[] }) => {
 
 const SingleFolder = ({
   folder,
-  isChecked,
   children,
 }: {
   folder: Folder;

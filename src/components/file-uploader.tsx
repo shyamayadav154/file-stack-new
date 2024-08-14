@@ -80,8 +80,8 @@ export default function FileUPloader({
   }
 
   return (
-    <section className="flex w-full flex-col items-center justify-center">
-      <div className="mt-5 grid w-full gap-4">
+    <section className="flex flex-col items-center justify-center">
+      <div className=" grid  gap-4">
         <form
           ref={formRef}
           onSubmit={handleSubmit}

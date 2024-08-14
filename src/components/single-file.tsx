@@ -73,7 +73,7 @@ function SingleFile({ file }: { file: File }) {
       {excelData && (
         <div>
           <div>
-            <Button variant="ghost" onClick={() => setExcelData(null)}>
+            <Button onClick={() => setExcelData(null)}>
               Remove preview
             </Button>
           </div>

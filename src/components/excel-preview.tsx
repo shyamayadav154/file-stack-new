@@ -47,8 +47,7 @@ export const ExcelPreviewUploader: React.FC = () => {
 
   return (
     <div>
-      <h1>Excel File Uploader and Preview</h1>
-      <ExcelUploader onFileLoaded={handleFileLoaded} />
+      {/* <ExcelUploader onFileLoaded={handleFileLoaded} /> */}
       <ExcelPreview data={excelData} />
     </div>
   );

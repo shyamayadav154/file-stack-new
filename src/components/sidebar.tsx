@@ -16,10 +16,11 @@ async function SideBar({
       children: true,
     },
   });
+  
 
-  if (!data.length) {
-    return <div>No folders found</div>;
-  }
+  // if (!data.length) {
+  //   return <div>No folders found</div>;
+  // }
 
   return (
     <div className="flex flex-col gap-5 p-2">

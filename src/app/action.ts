@@ -4,6 +4,25 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 import { db } from "~/server/db";
 
+export async function deleteFolder(formData: FormData) {
+  const folderId = formData.get("folderId");
+  if (!folderId) {
+    return NextResponse.json({
+      success: false,
+      message: "Folder ID is required",
+    });
+  }
+  await db.folder.delete({
+    where: {
+      id: Number(folderId),
+    },
+  });
+
+  revalidatePath("/");
+
+  // return { message: "Folder created successfully" };
+}
+
 export async function createFolder(formData: FormData) {
   const folderName = formData.get("folderName");
 
