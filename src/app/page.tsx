@@ -1,6 +1,6 @@
 import { ExcelPreviewUploader } from "~/components/excel-preview";
-import { FileExplorer } from "~/components/file-explorer";
 import SideBar from "~/components/sidebar";
+import StorageWrapper from "~/components/storag-wrappter";
 
 export default function HomePage({
   searchParams,
@@ -11,6 +11,7 @@ export default function HomePage({
     <>
       <SideBar searchParams={searchParams} />
       <ExcelPreviewUploader/>
+      <StorageWrapper/>
     </>
   );
 }

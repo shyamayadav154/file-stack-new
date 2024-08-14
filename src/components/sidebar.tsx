@@ -1,9 +1,6 @@
 import { db } from "~/server/db";
-import SidebarFolders from "./sidebar-folder";
-import ShowFiles from "./show-files";
-import { FileExplorer } from "./file-explorer";
-import { AllFolders } from "./single-folder";
 import CreateFolder from "./create-folder";
+import { AllFolders } from "./single-folder";
 
 async function SideBar({
   searchParams,

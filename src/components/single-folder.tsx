@@ -2,28 +2,35 @@ import { type Folder } from "@prisma/client";
 import Link from "next/link";
 
 import {
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FolderIcon } from "lucide-react";
 import { Accordion } from "@radix-ui/react-accordion";
-import ShowFiles from "./show-files";
-import FileUPloader from "./file-uploader";
-import { Suspense } from "react";
+import { FolderIcon } from "lucide-react";
+import { cookies } from "next/headers";
 import DeleteFolder from "./delete-folder";
+import FileUPloader from "./file-uploader";
+import ShowFiles from "./show-files";
 
 export const AllFolders = ({ folders }: { folders: Folder[] }) => {
+  const cookieStore = cookies();
+  const psw = cookieStore.get("psw");
+
+  const hasAuth = psw?.value == '99991955'
+
   return (
     <Accordion type="single" collapsible className="grid gap-2">
       {folders.map((folder) => {
         return (
           <SingleFolder key={folder.id} folder={folder} isChecked={false}>
             <ShowFiles folderId={folder.id} folderName={folder.name} />
-            <div className="flex items-center gap-3 mt-5">
-              <DeleteFolder folderId={folder.id} />
-              <FileUPloader folderId={folder.id} />
-            </div>
+            {hasAuth && (
+              <div className="mt-5 flex items-center gap-3">
+                <DeleteFolder folderId={folder.id} />
+                <FileUPloader folderId={folder.id} />
+              </div>
+            )}
           </SingleFolder>
         );
       })}
