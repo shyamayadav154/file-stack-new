@@ -1,16 +1,16 @@
 "use client";
-import React, { useState } from "react";
 import { type File } from "@prisma/client";
 import { DownloadIcon, FileIcon } from "lucide-react";
-import ExcelPreview, { ExcelPreviewUploader } from "./excel-preview";
+import { useState } from "react";
 import * as XLSX from "xlsx";
+import ExcelPreview from "./excel-preview";
 import { Button } from "./ui/button";
 
 const processExcelFile = (data: string | ArrayBuffer) => {
   const workbook = XLSX.read(data, { type: "binary" });
   const sheetName = workbook.SheetNames[0];
   const worksheet = workbook.Sheets[sheetName];
-  const jsonData = XLSX.utils.sheet_to_json(worksheet);
+  const jsonData = XLSX.utils.sheet_to_html(worksheet);
   return jsonData;
 };
 
@@ -77,8 +77,9 @@ function SingleFile({ file }: { file: File }) {
               Remove preview
             </Button>
           </div>
+          <div dangerouslySetInnerHTML={{ __html: excelData }} />
 
-          <ExcelPreview data={excelData} />
+          {/* <ExcelPreview data={excelData} /> */}
         </div>
       )}
     </div>
